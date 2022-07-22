@@ -34,6 +34,11 @@ h2 {
 }
 
 .social-media {
+    margin-top: 1rem;
+    display: flex;
+}
+
+.social-media a {
     text-decoration: none;
     color: white;
     font-size: 24px;
@@ -85,8 +90,8 @@ a:hover {
     display: flex;
     justify-content: center;
     cursor: pointer;
-    index: 9999;
-    transition: 400ms ease-in-out 0;
+    z-index: 9999;
+    transition: 400ms ease-in-out 0s;
 }
 
 .checkbox .trace {
@@ -95,7 +100,7 @@ a:hover {
     background-color: white;
     position: absolute;
     border-radius: 4px;
-    transition: 0.5 ease-in-out;
+    transition: 0.5s ease-in-out;
 }
 
 .checkbox .trace:nth-child(1) {
@@ -113,6 +118,10 @@ a:hover {
     transform: rotate(0);
 }
 
+#toggle {
+    display: none;
+}
+
 /*Menu*/
 
 .menu {
@@ -125,7 +134,7 @@ a:hover {
     border-radius: 50%;
     box-shadow: 0px 0px 0px 0px white;
     z-index: -1;
-    transition: 400ms ease-in-out 0;
+    transition:400ms ease-in-out 0;
 }
 
 .menu-items {
@@ -147,8 +156,8 @@ a:hover {
     list-style-type: none;
 }
 
-.menu-items ul li {
-    margin:10 0;
+.menu-items ul li a{
+    margin:10px 0;
     color: #2E1C2B;
     text-decoration: none;
     text-transform: uppercase;
@@ -156,7 +165,185 @@ a:hover {
     font-size: 40px;
 }
 
-/* 09:46 */
+/* animação do menu */
 
+#toggle:checked + .checkbox .trace:nth-child(1) {
+    transform: rotate(45deg);
+    background-color: #2E1C2B;
+    top: 47px;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(2) {
+    transform: translateX(-100px);
+    width: 30px;
+    visibility: hidden;
+    opacity: 0;
+}
+
+#toggle:checked + .checkbox .trace:nth-child(3) {
+    transform: rotate(-45deg);
+    background-color: #2E1C2B;
+    top: 48px;
+}
+
+#toggle:checked + .checkbox {
+    background-color: white;
+}
+
+#toggle:checked ~ .menu {
+    box-shadow: 0px 0px 0px 100vmax white;
+    z-index: 1;
+}
+
+#toggle:checked ~ .menu-items {
+    visibility: visible;
+    opacity: 1;
+}
+/* CARDS */
+
+.container {
+    width: 100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 3rem 0;
+}
+
+.card-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+}
+
+.card {
+    height: 300px;
+    width: 400px;
+    margin: 3rem 0 0 0;
+    background-image: url('room1.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: grayscale(0.8);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-text {
+    width: 40%;
+    font-size: sans-serif;
+    letter-spacing: 1px;
+    color: rgb(109, 109, 109);
+}
+
+.card-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.card-wrapper::before {
+    content: '';
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    display: block;
+    border: 1px solid white;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.card-wrapper h2 {
+    color: rgb(243, 238, 236);
+    font-weight: bolder;
+    font-size: 40px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin: 0;
+    transition: 0.3s;
+}
+
+.card-wrapper p {
+    font-size: 0;
+    visibility: hidden;
+    opacity: 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.card:hover {
+    filter: unset;
+}
+
+.card:hover > .card-wrapper::before {
+    opacity: 1;
+    width: 350px;
+    height: 250px;
+}
+
+.card:hover > .card-wrapper p {
+    font-size: 14px;
+    opacity: 1;
+    visibility: visible;
+}
+
+/*footer*/
+
+.footer {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2E1C2B;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 800px) {
+    .social-media {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        margin-top: 0;
+    }
+
+    .card-container {
+        flex-direction: column;
+    }
+
+    .container .card-container:nth-child(1),
+    .container .card-container:nth-child(3) {
+        flex-direction: column-reverse;
+    }
+
+    .card {
+        height: 250px;
+        width: 250px;
+    }
+
+    .card-text {
+        width: 90%;
+        margin-top: 2rem;
+        text-align: center;
+    }
+
+    .card:hover > .card-wrapper::before {
+        height: 190px;
+        width: 190px;
+    }
+}
 
 
